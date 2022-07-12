@@ -25,7 +25,7 @@ contract ProjectsManagerContract is Initializable, Common {
         _commonInit();
     }
 
-    event NewProject(uint256 id, uint256 value, uint256 totalNFT);
+    event NewProject(uint256 id, uint256 minimumContribution, uint256 expiresAt);
 
     struct ProjectInfo {
         uint256 id;
@@ -117,10 +117,9 @@ contract ProjectsManagerContract is Initializable, Common {
             _amount >= projects[_id].minimumContribution,
             "Not enough woxz"
         );
-
+        wozxToken.safeTransferFrom(msg.sender, projects[_id].addr, _amount);
         Project project = Project(projects[_id].addr);
         uint256 amount = project.contribute(msg.sender, _amount);
-        wozxToken.safeTransferFrom(msg.sender, projects[_id].addr, _amount);
         emit LockingUpdate(msg.sender, _id, amount);
     }
 
