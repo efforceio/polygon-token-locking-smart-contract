@@ -1,4 +1,5 @@
-// contracts/WhitelistAddressContract.sol
+// SPDX-FileType: SOURCE
+// SPDX-FileCopyrightText: 2022 Efforce.io
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
